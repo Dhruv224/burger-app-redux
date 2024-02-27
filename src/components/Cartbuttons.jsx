@@ -11,7 +11,7 @@ function Cartbuttons({ itemName, itemCount, setIngrediants }) {
     salad: 1
   }
 
-  const decCounter = () => {l
+  const decCounter = () => {
     setIngrediants((prevIngrediants) => {
         // console.log(prevIngrediants[itemName] , minLimit[itemName]);
         if (prevIngrediants[itemName] > minLimit[itemName]) {

@@ -1,46 +1,36 @@
 import React, { useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Bread from "./Bread";
+import Cartbuttons from "./Cartbuttons";
 import Cheez from "./Cheez";
 import Salad from "./Salad";
-import Cartbuttons from "./Cartbuttons";
-import { useNavigate } from "react-router-dom";
+import { updateItem } from "../redux/actions/OrdersActions";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../redux/actions/OrdersActions";
 import { Slide, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function Home() {
+function UpdateOrder() {
+  const { orderId } = useParams();
+  const dispatch = useDispatch();
   const userNameRef = useRef("");
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+
+  let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+  let filteredOrders = orders.filter(
+    (order) => order.orderId === parseInt(orderId)
+  );
+
   const [ingrediants, setIngrediants] = useState({
-    orderId: null,
-    user: "",
-    bread: 2,
-    cheez: 0,
-    tikki: 1,
-    salad: 1,
+    orderId: Number(orderId),
+    user: filteredOrders[0]?.user,
+    bread: filteredOrders[0]?.bread,
+    cheez: filteredOrders[0]?.cheez,
+    tikki: filteredOrders[0]?.tikki,
+    salad: filteredOrders[0]?.salad,
   });
 
-  // const orderNow = () => {
-  //   if (
-  //     userNameRef.current.value.trim() === "" ||
-  //     userNameRef.current.value.trim() === null
-  //   ) {
-  //     userNameRef.current.focus();
-  //     userNameRef.current.style.border = "2px solid blue";
-  //     userNameRef.current.style.outline = "none";
-  //   } else {
-  //     let orderData = JSON.parse(localStorage.getItem("orders")) || [];
-  //     ingrediants.orderId = orderData[orderData.length - 1]?.orderId + 1 || 1;
-  //     orderData.push(ingrediants);
-  //     localStorage.setItem("orders", JSON.stringify(orderData));
-  //     setIngrediants({ ...ingrediants, user: "" });
-  //     navigate("/orders");
-  //   }
-  // };
-
-  const orderNow = () => {
+  const updateOrder = () => {
     if (
       userNameRef.current.value.trim() === "" ||
       userNameRef.current.value.trim() === null
@@ -49,8 +39,8 @@ function Home() {
       userNameRef.current.style.border = "2px solid blue";
       userNameRef.current.style.outline = "none";
     } else {
-      dispatch(addToCart(ingrediants));
-      toast.success(`Order placed sucessfully`, {
+      dispatch(updateItem(orderId, ingrediants));
+      toast.success(`Order updated sucessfully`, {
         position: "top-right",
         autoClose: 1500,
         hideProgressBar: false,
@@ -70,7 +60,7 @@ function Home() {
 
   return (
     <div className="flex items-center flex-col justify-center m-8">
-      <ToastContainer/>
+      <ToastContainer />
       <div className="min-h-[500px] flex flex-col justify-center items-center">
         <Bread itemName="Bread" height="80px" />
         {[...Array(ingrediants.cheez)].map((_, index) => (
@@ -114,14 +104,14 @@ function Home() {
         />
         <button
           type="button"
-          onClick={orderNow}
+          onClick={updateOrder}
           className="m-2 border-2 border-gray-500 py-1 px-4 transition-all duration-200 hover:bg-blue-500 hover:border-blue-500 hover:text-white"
         >
-          Order Now
+          Update Order
         </button>
       </div>
     </div>
   );
 }
 
-export default Home;
+export default UpdateOrder;
