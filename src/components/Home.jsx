@@ -69,58 +69,59 @@ function Home() {
   };
 
   return (
-    <div className="flex items-center flex-col justify-center m-8">
-      <ToastContainer/>
-      <div className="min-h-[500px] flex flex-col justify-center items-center">
-        <Bread itemName="Bread" height="80px" />
-        {[...Array(ingrediants.cheez)].map((_, index) => (
-          <Cheez key={index} />
-        ))}
-        <Bread itemName="Tikki" height="40px" />
-        {[...Array(ingrediants.salad)].map((_, index) => (
-          <Salad key={index} />
-        ))}
-        <Bread itemName="Bread" height="80px" />
-      </div>
+    <div className="flex items-center flex-col justify-center py-4 dark:bg-gray-800 dark:text-white">
+  <ToastContainer/>
+  <div className="min-h-[500px] flex flex-col justify-center items-center">
+    <Bread itemName="Bread" height="80px" />
+    {[...Array(ingrediants.cheez)].map((_, index) => (
+      <Cheez key={index} />
+    ))}
+    <Bread itemName="Tikki" height="40px" />
+    {[...Array(ingrediants.salad)].map((_, index) => (
+      <Salad key={index} />
+    ))}
+    <Bread itemName="Bread" height="80px" />
+  </div>
 
-      <Cartbuttons
-        itemName="cheez"
-        itemCount={ingrediants.cheez}
-        setIngrediants={setIngrediants}
-      />
-      <Cartbuttons
-        itemName="salad"
-        itemCount={ingrediants.salad}
-        setIngrediants={setIngrediants}
-      />
+  <Cartbuttons
+    itemName="cheez"
+    itemCount={ingrediants.cheez}
+    setIngrediants={setIngrediants}
+  />
+  <Cartbuttons
+    itemName="salad"
+    itemCount={ingrediants.salad}
+    setIngrediants={setIngrediants}
+  />
 
-      <div>
-        <input
-          type="text"
-          name="user"
-          ref={userNameRef}
-          placeholder="Enter Name..."
-          className="border-2 border-black py-1 px-4"
-          required
-          value={ingrediants.user}
-          onChange={(e) => {
-            setIngrediants((prevIng) => {
-              return {
-                ...prevIng,
-                user: e.target.value,
-              };
-            });
-          }}
-        />
-        <button
-          type="button"
-          onClick={orderNow}
-          className="m-2 border-2 border-gray-500 py-1 px-4 transition-all duration-200 hover:bg-blue-500 hover:border-blue-500 hover:text-white"
-        >
-          Order Now
-        </button>
-      </div>
-    </div>
+  <div>
+    <input
+      type="text"
+      name="user"
+      ref={userNameRef}
+      placeholder="Enter Name..."
+      className="border-2 border-black py-1 px-4 dark:bg-gray-800 dark:border-gray-600"
+      required
+      value={ingrediants.user}
+      onChange={(e) => {
+        setIngrediants((prevIng) => {
+          return {
+            ...prevIng,
+            user: e.target.value,
+          };
+        });
+      }}
+    />
+    <button
+      type="button"
+      onClick={orderNow}
+      className="m-2 border-2 border-gray-500 py-1 px-4 transition-all duration-200 hover:bg-blue-500 hover:border-blue-500 hover:text-white dark:border-gray-600 dark:hover:bg-blue-600 dark:hover:border-blue-600 dark:hover:text-white"
+    >
+      Order Now
+    </button>
+  </div>
+</div>
+
   );
 }
 

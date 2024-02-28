@@ -111,7 +111,7 @@ function Orders() {
   };
 
   return (
-    <>
+    <div className="dark:bg-gray-800 p-2 pt-11 dark:text-white">
       <ToastContainer />
       <div className="m-20 h-[65vh]">
         {ordersObj.length === 0 ? (
@@ -127,7 +127,7 @@ function Orders() {
                 autoFocus
                 ref={currValName}
                 onChange={handleChange}
-                className="px-4 py-2 rounded-md border-2 border-black w-[60vw] "
+                className="px-4 py-2 rounded-md border-[1px] outline-none border-black w-[70vw] dark:border-gray-300 dark:bg-gray-900"
               />
 
               <select
@@ -135,7 +135,7 @@ function Orders() {
                   setDropDown(e.target.value);
                 }}
                 defaultValue="select"
-                className="px-4 py-2 rounded-md border-2 border-black"
+                className="px-4 py-2 rounded-md border-[1px] outline-none border-black dark:border-gray-300 dark:bg-gray-900"
               >
                 <option value="select" disabled>
                   Select
@@ -146,11 +146,11 @@ function Orders() {
                 <option value="salad">salad</option>
               </select>
 
-              <div className="flex justify-center items-center gap-2 align-middle px-4 py-2 rounded-md border-2 border-black">
+              <div className="flex justify-center items-center gap-2 align-middle px-4 py-2 rounded-md border-[1px] outline-none border-black dark:border-gray-300 dark:bg-gray-900">
                 <input
                   type="checkbox"
                   id="checkbox"
-                  className="text-5xl"
+                  className="form-checkbox"
                   checked={checked}
                   onChange={() => setChecked(!checked)}
                 />
@@ -162,30 +162,30 @@ function Orders() {
             <table className="min-w-full border border-gray-300 divide-y divide-gray-300">
               <thead>
                 <tr className="bg-gray-900 text-white">
-                  <th className="px-6 py-3 text-center text-xs leading-4 font-medium uppercase tracking-wider">
+                  <th className="px-6 py-3 text-center text-base leading-4 font-bold uppercase tracking-wider">
                     Order Id
                   </th>
-                  <th className="px-6 py-3 text-center text-xs leading-4 font-medium uppercase tracking-wider">
+                  <th className="px-6 py-3 text-center text-base leading-4 font-bold uppercase tracking-wider">
                     User
                   </th>
-                  <th className="px-6 py-3 text-center text-xs leading-4 font-medium uppercase tracking-wider">
+                  <th className="px-6 py-3 text-center text-base leading-4 font-bold uppercase tracking-wider">
                     Bread
                   </th>
-                  <th className="px-6 py-3 text-center text-xs leading-4 font-medium uppercase tracking-wider">
+                  <th className="px-6 py-3 text-center text-base leading-4 font-bold uppercase tracking-wider">
                     Cheez
                   </th>
-                  <th className="px-6 py-3 text-center text-xs leading-4 font-medium uppercase tracking-wider">
+                  <th className="px-6 py-3 text-center text-base leading-4 font-bold uppercase tracking-wider">
                     Tikkis
                   </th>
-                  <th className="px-6 py-3 text-center text-xs leading-4 font-medium uppercase tracking-wider">
+                  <th className="px-6 py-3 text-center text-base leading-4 font-bold uppercase tracking-wider">
                     Salad
                   </th>
-                  <th className="px-6 py-3 text-center text-xs leading-4 font-medium uppercase tracking-wider">
+                  <th className="px-6 py-3 text-center text-base leading-4 font-bold uppercase tracking-wider">
                     ###
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-300">
+              <tbody className="bg-white divide-y divide-gray-300 dark:bg-gray-900">
                 {handleSearch(slicedOrders).map((order, index) => (
                   <tr
                     key={index}
@@ -212,13 +212,13 @@ function Orders() {
                     <td className="px-6 py-4 text-center flex justify-center items-center gap-3 whitespace-no-wrap">
                       <button
                         onClick={() => updateItem(order.orderId)}
-                        className="border-2 border-blue-700 rounded-md text-blue-700 transition-all duration-300 hover:bg-blue-700 hover:text-white py-2 px-4"
+                        className="border-2 border-blue-700 rounded-md text-blue-700 font-bold transition-all duration-300 hover:bg-blue-700 hover:text-white py-2 px-4"
                       >
                         Update Order
                       </button>
                       <button
                         onClick={() => deleteItem(order.orderId)}
-                        className="border-2 border-red-700 rounded-md text-red-700 transition-all duration-300 hover:bg-red-700 hover:text-white py-2 px-4"
+                        className="border-2 border-red-700 rounded-md text-red-700 font-bold transition-all duration-300 hover:bg-red-700 hover:text-white py-2 px-4"
                       >
                         Delete Order
                       </button>
@@ -236,7 +236,7 @@ function Orders() {
         handleClickPagination={handleClickPagination}
         totalPage={totalPage}
       />
-    </>
+    </div>
   );
 }
 
