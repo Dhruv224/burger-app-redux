@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useCallback,
+} from "react";
 import Cheez from "./Cheez";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "../redux/actions/OrdersActions";
@@ -35,11 +41,14 @@ function Orders() {
   const startIndex = (currPage - 1) * limit;
   const endIndex = startIndex + limit;
 
-  const handleClickPagination = (index) => {
-    if (index >= 1 && index <= totalPage) {
-      setCurrPage(index);
-    }
-  };
+  const handleClickPagination = useCallback(
+    (index) => {
+      if (index >= 1 && index <= totalPage) {
+        setCurrPage(index);
+      }
+    },
+    [currPage]
+  );
 
   const updateItem = (orderId) => {
     navigate(`${orderId}`);
@@ -76,10 +85,15 @@ function Orders() {
     }, 500);
   };
 
+  // const slicedOrders = () => {
+  //   console.log("We have to call this function using ()");
+  //   return ordersObj.slice(startIndex, endIndex);
+  // };
+
   const slicedOrders = useMemo(() => {
     // it will slice data only once
     return ordersObj.slice(startIndex, endIndex);
-  }, [currPage, ordersObj]);
+  }, [currPage]);
 
   const handleSearch = (ordersObj) => {
     if (checked) {

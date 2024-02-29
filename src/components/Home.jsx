@@ -71,7 +71,7 @@ function Home() {
   return (
     <div className="flex items-center flex-col justify-center py-4 dark:bg-gray-800 dark:text-white">
   <ToastContainer/>
-  <div className="min-h-[500px] flex flex-col justify-center items-center">
+  <div className="min-h-[450px] mt-16 flex flex-col justify-center items-center">
     <Bread itemName="Bread" height="80px" />
     {[...Array(ingrediants.cheez)].map((_, index) => (
       <Cheez key={index} />

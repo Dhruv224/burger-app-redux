@@ -12,8 +12,6 @@ function Navbar() {
   const orders = useSelector((state) => state.orders);
   const themeMode = useSelector((state) => state.themeMode);
 
-  console.log(themeMode);
-
   const handleThemeMode = () => {
     themeMode ? document.documentElement.classList.remove('dark') : document.documentElement.classList.add('dark');
     dispatch(toggleTheme(themeMode)); 

@@ -59,9 +59,9 @@ function UpdateOrder() {
   };
 
   return (
-    <div className="flex items-center flex-col justify-center m-8">
+    <div className="flex items-center flex-col justify-center py-4 dark:bg-gray-800 dark:text-white">
       <ToastContainer />
-      <div className="min-h-[500px] flex flex-col justify-center items-center">
+      <div className="min-h-[450px] mt-16 flex flex-col justify-center items-center">
         <Bread itemName="Bread" height="80px" />
         {[...Array(ingrediants.cheez)].map((_, index) => (
           <Cheez key={index} />
@@ -90,7 +90,7 @@ function UpdateOrder() {
           name="user"
           ref={userNameRef}
           placeholder="Enter Name..."
-          className="border-2 border-black py-1 px-4"
+          className="border-2 border-black py-1 px-4 dark:bg-gray-800 dark:border-gray-600"
           required
           value={ingrediants.user}
           onChange={(e) => {
